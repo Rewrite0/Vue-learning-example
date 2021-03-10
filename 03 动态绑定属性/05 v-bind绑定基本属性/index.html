@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>v-bind</title>
+	</head>
+	<body>
+		<div id="app">
+			<img v-bind:src="imgURL" alt="">
+			<!--语法糖写法-->
+			<!--<img :src="imgURL" alt="">-->
+		</div>
+	</body>
+
+	<script src="../../vue.js"></script>
+	<script>
+		const app = new Vue({
+			el: '#app',
+			data: {
+				message: 'Hello Vue!',
+				imgURL: 'https://cdn.jsdelivr.net/gh/Rewrite0/FigureBed@master/img/14.png'
+			}
+
+		})
+	</script>
+</html>

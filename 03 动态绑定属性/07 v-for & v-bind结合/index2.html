@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>作业
+		</title>
+		<style type="text/css" media="screen">
+			.active{
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="(item, index) in movies" 
+					:class="{active: currentIndex === index}" 
+					@click="isIndex(index)">
+					{{item}}
+				</li>
+			</ul>
+		</div>
+		
+	</body>
+
+	<script src="../../vue.js"></script>
+	<script>
+		const app = new Vue({
+			el: '#app',
+			data: {
+				currentIndex: 0,
+				movies: ['火影','刀剑','通灵王','无职转生']
+			},
+			methods:{
+				isIndex(index){
+					this.currentIndex = index
+				}
+			}
+
+		})
+	</script>
+</html>

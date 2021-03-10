@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>v-bind动态绑定style</title>
+	</head>
+	<body>
+		<div id="app">
+			<!--:style="key(属性名): value(属性值)"-->
+			<h2 :style="{color: finalColor}">{{message}}</h2>
+			<!--数组语法-->
+			<h2 :style="[bg, fcolor]">{{message}}</h2>
+		</div>
+	</body>
+
+	<script src="../../vue.js"></script>
+	<script>
+		const app = new Vue({
+			el: '#app',
+			data: {
+				message: 'Hello Vue!',
+				finalColor: 'red',
+				bg: {backgroundColor: 'blue'},
+				fcolor: {color: 'red'}
+			}
+
+		})
+	</script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>计算属性</title>
+	</head>
+	<body>
+		<div id="app">
+			<h2>{{firstName + ' ' + lastName}}</h2>
+			<h2>{{firstName}} {{lastName}}</h2>
+			<h2>{{getFullName()}}</h2>
+			<h2>{{fullName}}</h2>
+
+			<h2>books总价格: {{totalPrice}}</h2>
+		</div>
+	</body>
+
+	<script src="../../vue.js"></script>
+	<script>
+		const app = new Vue({
+			el: '#app',
+			data: {
+				message: 'Hello Vue!',
+				firstName: 'Re',
+				lastName: 'NB',
+				books: [
+					{id: 100, name: '刀剑神域', price: 45},
+					{id: 101, name: '斗破苍穹', price: 40},
+					{id: 102, name: '仙逆', price: 50},
+					{id: 103, name: '求魔', price: 55}
+				]
+			},
+			computed: { //计算属性
+//				计算属性会进行缓存，多次使用只会调用一次
+				fullName() {
+//					简写
+//					return this.firstName + ' ' + this.lastName
+//					完整写法
+//					计算属性一般没有set方法,只读属性
+//					set: function(){
+//					},
+					get: function(){
+						return this.firstName + ' ' + this.lastName
+					}
+				},
+				totalPrice() {
+					let result = 0
+					//方法一
+					for (let i=0; i < this.books.length; i++){
+						result += this.books[i].price
+					}
+					//方法二
+//					for (let i in this.books){
+//						result += this.books[i].price
+//					}
+					//方法三
+//					for (let book of this.books){
+//						result += book.price
+//					}
+					return result
+				}
+			},
+			methods: {
+				getFullName() {
+					return this.firstName + ' ' + this.lastName
+				}
+			}
+
+		})
+	</script>
+</html>

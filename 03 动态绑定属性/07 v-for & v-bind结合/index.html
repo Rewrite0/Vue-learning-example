@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>v-for和v-bind结合作业</title>
+	<style>
+		.red {
+			color: red;
+		}
+	</style>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li :class="{red: num == index}" @click="Red(index)" v-for="(m, index) in movies">{{index}}--{{m}}</li>
+			</ul>
+		</div>
+	</body>
+
+	<script src="../../vue.js"></script>
+	<script>
+		const app = new Vue({
+			el: '#app',
+			data: {
+				message: 'Hello Vue!',
+				num: 0,
+				movies: ['犬夜叉', '火影', '刀剑神域', '天降之物']
+			},
+			methods: {
+				Red(index){
+					console.log(index)
+					this.num = index
+					//this.isRed = !this.isRed
+				}
+			}
+
+		})
+	</script>
+</html>
