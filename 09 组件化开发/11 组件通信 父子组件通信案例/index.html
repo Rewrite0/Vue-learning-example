@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title></title>
+	</head>
+	<body>
+
+		<div id="app">
+			<cpn :number1="num1" :number2="num2"
+			@num2change="num2change"></cpn>
+		</div>
+
+	</body>
+	<script src="../../vue.js"></script>
+
+	<template id="cpn">
+		<div>
+			<label>
+				<h2>直接绑定props,不推荐,报错</h2>
+				<h2>props:{{number1}}</h2>	
+				<input type="text" v-model="number1"/>
+			</label>
+
+			<label>
+				<h2>props:{{number2}}</h2>	
+				<h2>通过data绑定</h2>
+				<h2>data:{{dnumber2}}</h2>	
+				<!--<input type="text" v-model="dnumber2"/>-->
+				<input type="text" :value="dnumber2" @input="num2Input"/>
+			</label>
+		</div>		
+	</template>
+
+	<script charset="utf-8">
+		const app = new Vue({
+			el: '#app',
+			data: {
+				num1: 1,
+				num2: 0
+			},
+			methods: {
+				num2change(value) {
+					//传递的value为String类型
+					this.num2 = parseInt(value)
+				}
+			},
+			components: {
+				cpn: {
+					template: '#cpn',
+					props: {
+						number1: Number,
+						number2: Number
+					},
+					data() {
+						return {
+							dnumber1: this.number1,
+							dnumber2: this.number2
+						}
+					},
+					methods: {
+						num2Input(event) {
+							//将input中的value赋值到dnumber中
+							this.dnumber2 = event.target.value
+							//传递到父组件,便于父组件修改值
+							this.$emit('num2change', this.dnumber2)
+						}
+						
+					}
+					
+				}
+			}
+		})
+	</script>
+</html>
