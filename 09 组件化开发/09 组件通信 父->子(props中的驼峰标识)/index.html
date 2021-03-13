@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title></title>
+	</head>
+	<body>
+
+		<div id="app">
+			<!--使用驼峰报错,无法传递数据-->
+			<cpn :cInfo="info"></cpn>
+			<!--可转为下面的写法-->
+			<cpn :c-info="info"></cpn>
+		</div>
+
+	</body>
+	<script src="../../vue.js"></script>
+
+	<template id="cpn">
+		<div>
+			<h2>{{cInfo}}</h2>	
+		</div>		
+	</template>
+
+	<script charset="utf-8">
+		// 父->子: props
+		const cpn = {
+			template: '#cpn',
+			props: {
+				cInfo: {
+					type: Object,
+					default() {
+						return {}
+					}
+				}
+			}
+		}
+
+		const app = new Vue({
+			el: '#app',
+			data: {
+				info: {
+					name: 'Bob',
+					age: 18,
+					height: 1.8
+				}
+			},
+			components: {
+				cpn
+			}
+		})
+	</script>
+</html>

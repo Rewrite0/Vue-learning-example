@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title></title>
+	</head>
+	<body>
+
+		<div id="app">
+			<cpn></cpn>
+			<cpn></cpn>
+		</div>
+
+	</body>
+	<script src="../../vue.js"></script>
+	<template id="cpn">
+		<div>
+			<h2>当前计数: {{count}}</h2>
+			<button @click="increment">-</button>
+			<button @click="oncrement">+</button>
+		</div>
+	</template>
+
+	<script charset="utf-8">
+
+		Vue.component('cpn',{
+			template: '#cpn',
+			data() { //组件存放数据
+				return {
+					count: 0
+				}
+			},
+			methods: {
+				increment(){
+					this.count--
+				},
+				oncrement(){
+					this.count++
+				}
+			}
+		})
+		const app = new Vue({
+			el: '#app',
+			data: {
+			}
+		})
+	</script>
+</html>

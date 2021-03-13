@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title></title>
+	</head>
+	<body>
+
+		<div id="app">
+			<cpn @itemclick="cpnClick"></cpn>
+		</div>
+
+	</body>
+	<script src="../../vue.js"></script>
+
+	<template id="cpn">
+		<div>
+			<button v-for="i in categories"
+				@click="btnClick(i)">{{i.name}}</button>
+		</div>		
+	</template>
+
+	<script charset="utf-8">
+		const cpn = {
+			template: '#cpn',
+			data() {
+				return {
+					categories: [
+						{id: '01',name: '推荐'},
+						{id: '02',name: '数码'},
+						{id: '03',name: '家电'},
+						{id: '04',name: '办公'},
+					]
+				}
+			},
+			methods: {
+				btnClick(item) {
+					//子传父,自定义事件
+					 this.$emit('itemclick', item)
+				}
+			}
+		}
+
+		const app = new Vue({
+			el: '#app',
+			data: {
+				message: 'Hello!',
+			},
+			components: {
+				cpn
+			},
+			methods: {
+				cpnClick(item) {
+					console.log('cpnClick', item)	
+				}
+			}
+		})
+	</script>
+</html>
