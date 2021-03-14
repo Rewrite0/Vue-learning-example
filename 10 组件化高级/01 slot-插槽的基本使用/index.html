@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title></title>
+	</head>
+	<body>
+
+		<div id="app">
+			<cpn>
+				<button>按钮</button>
+			</cpn>
+			<cpn>
+				<h2>slot</h2>
+			</cpn>
+			<!--如果有多个值,同时放到组件进行替换,会一起作为替换元素-->
+			<cpn>
+				<button>按钮</button>
+				<h2>slot</h2>
+			</cpn>
+		</div>
+
+	</body>
+	<script src="../../vue.js"></script>
+
+	<template id="cpn">
+		<div>
+			<h2>我是组件cpn</h2>
+			<p>我是组件段落</p>
+			<!--插槽-->
+			<!--<slot></slot>-->
+			<!--插槽默认值-->
+			<slot><button>默认按钮</button></slot>
+		</div>
+	</template>
+
+	<script charset="utf-8">
+
+		const app = new Vue({
+			el: '#app',
+			data: {
+				message: 'Hello!'
+			},
+			methods: {
+			},
+			components: {
+				cpn: {
+					template: '#cpn'
+				}
+			}
+		})
+	</script>
+</html>

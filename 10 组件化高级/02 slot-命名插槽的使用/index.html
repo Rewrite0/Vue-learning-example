@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title></title>
+	</head>
+	<body>
+
+		<div id="app">
+			<cpn>
+				<span>左</span>
+			</cpn>
+			<cpn>
+				<span slot="left">左</span>
+			</cpn>
+			<cpn>
+				<span slot="left">左</span>
+				<span slot="right">右</span>
+			</cpn>
+		</div>
+
+	</body>
+	<script src="../../vue.js"></script>
+
+	<template id="cpn">
+		<div>
+			<slot name="left"><span>left</span></slot>
+			<slot name="center"><span>center</span></slot>
+			<slot name="right"><span>right</span></slot>
+		</div>
+	</template>
+
+	<script charset="utf-8">
+
+		const app = new Vue({
+			el: '#app',
+			data: {
+				message: 'Hello!'
+			},
+			methods: {
+			},
+			components: {
+				cpn: {
+					template: '#cpn'
+				}
+			}
+		})
+	</script>
+</html>
